@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rekleme-News</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="./output.css">
+</head>
+
+<body class="box-border">
+    <header class="flex  justify-center sticky py-2.5 border-b bg-gray-100">
+        <nav class="sm:flex sm:justify-between sm:w-screen ">
+            <img class="sm:ml-9 h-7.5" src=" images/logotype.png" alt="">
+
+
+            <ul
+                class="sidebar hidden justify-around items-start flex-col px-5 py-5 bg-amber-500 absolute z-10 right-0 top-0 w-56 h-72">
+                <li onclick="hideSidebar()" class=""><svg xmlns="http://www.w3.org/2000/svg" height="28"
+                        viewBox="0 -960 960 960" width="28">
+                        <path
+                            d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z">
+                        </path>
+                    </svg></li>
+                <li class="font-normal hover:font-bold hover:text-red-800"><a href="https://rekleme.vercel.app/"
+                        id="about-company">About Company</a>
+                </li>
+                <li class="font-normal hover:font-bold hover:text-red-800"><a
+                        href="https://rekleme-catalog.vercel.app/">Catalog</a></li>
+                <li class="font-normal hover:font-bold hover:text-red-800"><a href="Promotion">Promotion</a></li>
+                <li class="font-normal hover:font-bold hover:text-red-800"><a href="#SERVICE">Services</a></li>
+                <li class="font-normal hover:font-bold hover:text-red-800"><a href="#Contact">Contact</a></li>
+                <li class="font-normal hover:font-bold hover:text-red-800"><a href="#Search"><i
+                            class="fa-solid fa-magnifying-glass"></i></a></li>
+            </ul>
+
+            <ul class="hidden lg:flex justify-center items-center">
+                <li class="ml-5 hover:font-bold text-base hover:scale-125"><i class="fa-solid scale-110 fa-bars"></i>
+                </li>
+                <li class="ml-5 hover:font-bold text-base font-medium"><a class="xl:text-xl"
+                        href="https://rekleme.vercel.app/" id="about-company">About
+                        Company</a></li>
+                <li class="ml-5 hover:font-bold text-base font-medium"><a href="https://rekleme-catalog.vercel.app/"
+                        class="xl:text-xl">Catalog</a></li>
+                <li class="ml-5 hover:font-bold text-base font-medium"><a href="#Promotion"
+                        class="xl:text-xl">Promotion</a></li>
+                <li class="ml-5 hover:font-bold text-base font-medium"><a href="#Service"
+                        class="xl:text-xl">Services</a></li>
+                <li class="ml-5 hover:font-bold text-base font-medium"><a href="#Contact" class="xl:text-xl">Contact</a>
+                </li>
+                <li class="ml-5 hover:font-bold text-base font-medium"><a href="#Search" class="lg:text-2xl"><i
+                            class="fa-solid fa-magnifying-glass hover:scale-125"></i></a></li>
+            </ul>
+
+            <!-- <div class="flex justify-around w-screen items-center bg-slate-100 py-2 sm:py-0
+                fixed bottom-2 left-0 self-center sm:static  sm:bg-transparent sm:justify-end sm:mr-9 sm:w-36
+                ">
+
+                <button class="sm:block sm:bg-slate-200 border rounded-lg px-2 p-1 hover:bg-green-500 "><i
+                        class="fa-regular fa-user"></i></button>
+                <button class="sm:block sm:ml-5 sm:bg-slate-200 border rounded-lg px-2 p-1 hover:bg-green-500"><i
+                        class="fa fa-cart-shopping"></i></button>
+                <button id="call-icon"
+                    class="sm:hidden sm:ml-5 sm:bg-slate-200 border rounded-lg px-2 p-1 hover:bg-green-500"><svg
+                        xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 25 24" fill="none">
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M6.34194 9.85637C8.12925 13.7483 11.3097 16.8424 15.2635 18.519L15.276 18.5243L16.0398 18.8648C17.0124 19.2981 18.1557 18.9903 18.7793 18.1273L20.0536 16.3635C20.1315 16.2558 20.1114 16.106 20.008 16.0225L17.7832 14.2277C17.6726 14.1385 17.51 14.1593 17.4254 14.2734L16.5595 15.4418C16.3492 15.7256 15.9695 15.8242 15.6477 15.6786C12.6913 14.3406 10.3156 11.9649 8.97769 9.00852C8.83208 8.68676 8.93067 8.30701 9.21442 8.09673L10.3828 7.23087C10.497 7.14626 10.5177 6.98363 10.4285 6.87304L8.63348 4.64799C8.55006 4.54458 8.40031 4.52449 8.29258 4.60227L6.51928 5.88242C5.6505 6.50961 5.34454 7.66246 5.788 8.63791L6.34134 9.85507C6.34154 9.8555 6.34174 9.85594 6.34194 9.85637ZM14.6716 19.8973C10.3756 18.0737 6.92021 14.7107 4.97816 10.481L4.97699 10.4784L4.42249 9.2587C3.68339 7.63295 4.19332 5.71154 5.6413 4.66622L7.41459 3.38607C8.16871 2.84166 9.21694 2.98226 9.80094 3.70616L11.596 5.9312C12.2205 6.70537 12.0751 7.84377 11.2759 8.43601L10.6064 8.93216C11.7373 11.1266 13.5297 12.9189 15.7241 14.0499L16.2203 13.3803C16.8125 12.5812 17.9509 12.4357 18.7251 13.0603L20.9498 14.8551C21.6739 15.4392 21.8143 16.4879 21.2695 17.242L19.9951 19.0057C18.9558 20.4442 17.0504 20.9572 15.4293 20.2349L14.6716 19.8973Z"
+                            fill="black"></path>
+                    </svg></button>
+                <button
+                    class="hidden sm:bg-slate-200 border rounded-lg px-2 p-1 hover:bg-green-500 lg:inline-flex items-center justify-center ml-5 gap-2.5 font-medium "
+                    id="constructor">Constructor <i class="fa-regular fa-pen-to-square"></i></button>
+                <button id="menu" onclick="showSidebar();"
+                    class="hidden sm:inline-flex gap-2.5 sm:ml-5 sm:items-center sm:bg-slate-200 border rounded-lg px-2 p-1 hover:bg-green-500  lg:hidden">
+                    Menu<i class="fa-solid fa-bars"></i>
+                </button>
+                <button id="menu-1" onclick="showSidebar();"
+                    class="sm:hidden sm:bg-slate-200 border rounded-lg px-2 p-1 hover:bg-green-500 lg:hidden"><i
+                        class=" fa-solid fa-bars"></i>
+                </button>
+            </div> -->
+
+
+        </nav>
+    </header>
+    <div aria-label="Breadcrumb" class=" relative pl-5 pt-2.5 lg:px-10 lg:py-5 bg-gray-100 ">
+        <ul class="flex justify-start items-center  ">
+            <li class="content-after px-2 lg:font-medium "><a href="https://rekleme.vercel.app/"
+                    class=" text-sm xl:text-base pr-2.5">About
+                    Company</a></li>
+            <li class="content-after px-2 lg:font-medium"><a class=" text-sm xl:text-base pr-2.5" href="">Blog</a></li>
+
+        </ul>
+        <img src="images/pattern.png"
+            class="hidden md:block absolute md:top-4 lg:top-6 xl:top-6.5  right-0 md:w-1/3 xl:w-auto" alt="">
+        <!-- Dropdown search bar -->
+    </div>
+    <section class="flex flex-col  m-auto">
+        <h1
+            class="text-center text-2xl font-bold py-7 lg:py-8 bg-gray-100  mb-5 md:text-3xl md:text-start  md:px-24 lg:px-44  underline decoration-yellow-500">
+            Current Affairs
+        </h1>
+        <div class="flex flex-col justify-between items-start  m-auto md:max-w-2xl lg:max-w-4xl md:w-full xl:max-w-5xl">
+            <form action="Sorting" method="post" class="md:mx-0">
+                <h3 class="text-base mb-5 lg:text-lg font-semibold xl:text-xl 2xl:text-2xl">Sorting</h3>
+                <div class="flex justify-start items-center flex-wrap gap-5 ">
+                    <select
+                        class="shadow-lg rounded-lg text-start items-center px-2.5 py-1.5 md:px-5 md:py-2.5 border hover:text-green-700 font-semibold"
+                        id="sorting-list" value="" aria-placeholder="Default">
+                        <option value="type" class="text-gray-500">Default</option>
+                        <option value="type">Breaking News</option>
+                        <option value="type">Current News</option>
+                        <option value="type">Previous News</option>
+                    </select>
+                    <button type="submit"
+                        class=" group flex justify-center items-center gap-2.5 shadow-lg rounded-lg px-2.5 py-1.5 md:px-5 md:py-2.5 border font-semibold hover:border-green-700 hover:text-green-700">Stock
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path class="group-hover:fill-green-700"
+                                d="M11.226 7.10845C10.9819 6.86437 10.9819 6.46864 11.226 6.22456C11.4701 5.98048 11.8658 5.98048 12.1099 6.22456L15.4432 9.5579C15.6873 9.80197 15.6873 10.1977 15.4432 10.4418L12.1099 13.7751C11.8658 14.0192 11.4701 14.0192 11.226 13.7751C10.9819 13.531 10.9819 13.1353 11.226 12.8912L13.4924 10.6248H5.41797C5.07279 10.6248 4.79297 10.345 4.79297 9.99984C4.79297 9.65466 5.07279 9.37484 5.41797 9.37484H13.4924L11.226 7.10845Z"
+                                fill="black"></path>
+                        </svg></button>
+                </div>
+            </form>
+            <div class="flex  flex-col xl:max-w-4xl w-full flex-grow">
+                <div
+                    class="my-5 flex flex-col gap-2.5 justify-center md:flex-row md:flex-wrap md:justify-between md:gap-8 ">
+                    <div
+                        class=" my-5 max-w-72 flex flex-col justify-between h-60 border-t-2 border-t-gray-300 md:max-w-80 lg:w-96 xl:mx-0  w-full">
+                        <div class="flex flex-col gap-3">
+                            <h2 class="font-semibold  pt-5">Masks are now on sale</h2>
+                            <p>Taking success rates into account, synthetic testing helps improve the quality of
+                                analysis of
+                                existing behavior patterns. The opposite point of view implies.</p>
+                        </div> <a href="" class="flex justify-start items-center gap-2.5 text-green-600">02.10.2021 <svg
+                                xmlns="http://www.w3.org/2000/svg" width="24" height="30" viewBox="0 0 20 20"
+                                fill="none">
+                                <path class="group-hover:fill-green-700"
+                                    d="M11.226 7.10845C10.9819 6.86437 10.9819 6.46864 11.226 6.22456C11.4701 5.98048 11.8658 5.98048 12.1099 6.22456L15.4432 9.5579C15.6873 9.80197 15.6873 10.1977 15.4432 10.4418L12.1099 13.7751C11.8658 14.0192 11.4701 14.0192 11.226 13.7751C10.9819 13.531 10.9819 13.1353 11.226 12.8912L13.4924 10.6248H5.41797C5.07279 10.6248 4.79297 10.345 4.79297 9.99984C4.79297 9.65466 5.07279 9.37484 5.41797 9.37484H13.4924L11.226 7.10845Z"
+                                    fill="black"></path>
+                            </svg> </a>
+                    </div>
+                    <div
+                        class=" my-5 max-w-72 flex flex-col justify-between h-60 border-t-2 border-t-gray-300 md:max-w-80 lg:w-96 xl:mx-0  w-full">
+                        <div class="flex flex-col gap-3">
+                            <h2 class="font-semibold pt-5">Website design update</h2>
+                            <p>Equally, the cohesion of a team of professionals largely determines the importance of
+                                thoughtful
+                                reasoning.</p>
+                        </div>
+                        <a href="" class="flex justify-start items-center gap-2.5 text-green-600">13.09.2021 <svg
+                                xmlns="http://www.w3.org/2000/svg" width="24" height="30" viewBox="0 0 20 20"
+                                fill="none">
+                                <path class="group-hover:fill-green-700"
+                                    d="M11.226 7.10845C10.9819 6.86437 10.9819 6.46864 11.226 6.22456C11.4701 5.98048 11.8658 5.98048 12.1099 6.22456L15.4432 9.5579C15.6873 9.80197 15.6873 10.1977 15.4432 10.4418L12.1099 13.7751C11.8658 14.0192 11.4701 14.0192 11.226 13.7751C10.9819 13.531 10.9819 13.1353 11.226 12.8912L13.4924 10.6248H5.41797C5.07279 10.6248 4.79297 10.345 4.79297 9.99984C4.79297 9.65466 5.07279 9.37484 5.41797 9.37484H13.4924L11.226 7.10845Z"
+                                    fill="black"></path>
+                            </svg> </a>
+                    </div>
+                </div>
+                <div class="flex flex-col gap-2.5 justify-center md:flex-row md:flex-wrap md:justify-between md:gap-8">
+                    <div
+                        class=" my-5 max-w-72  flex flex-col justify-between h-60 border-t-2 border-t-gray-300 md:max-w-80 lg:w-96 xl:mx-0  w-full">
+                        <div class="flex flex-col gap-3">
+                            <h2 class="font-semibold pt-5">Opening a new direction</h2>
+                            <p>Gentlemen, the constant information and propaganda support of our activities clearly
+                                identifies
+                                the need for both self-sufficient and externally dependent conceptual solutions.</p>
+                        </div>
+                        <a href="" class="flex justify-start items-center gap-2.5 text-green-600">03.09.2021 <svg
+                                xmlns="http://www.w3.org/2000/svg" width="24" height="30" viewBox="0 0 20 20"
+                                fill="none">
+                                <path class="group-hover:fill-green-700"
+                                    d="M11.226 7.10845C10.9819 6.86437 10.9819 6.46864 11.226 6.22456C11.4701 5.98048 11.8658 5.98048 12.1099 6.22456L15.4432 9.5579C15.6873 9.80197 15.6873 10.1977 15.4432 10.4418L12.1099 13.7751C11.8658 14.0192 11.4701 14.0192 11.226 13.7751C10.9819 13.531 10.9819 13.1353 11.226 12.8912L13.4924 10.6248H5.41797C5.07279 10.6248 4.79297 10.345 4.79297 9.99984C4.79297 9.65466 5.07279 9.37484 5.41797 9.37484H13.4924L11.226 7.10845Z"
+                                    fill="black"></path>
+                            </svg> </a>
+                    </div>
+                    <div
+                        class=" my-5 max-w-72 flex flex-col justify-between h-60 border-t-2 border-t-gray-300 md:max-w-80 lg:w-96 xl:mx-0  w-full">
+                        <div class="flex flex-col gap-3">
+                            <h2 class="font-semibold pt-5">Updated layout designer</h2>
+                            <p>Modern technologies have reached such a level that the course towards a socially oriented
+                                national project plays an important role in the formation of new proposals.</p>
+                        </div> <a href="" class="flex justify-start items-center gap-2.5 text-green-600">22.08.2021 <svg
+                                xmlns="http://www.w3.org/2000/svg" width="24" height="30" viewBox="0 0 20 20"
+                                fill="none">
+                                <path class="group-hover:fill-green-700"
+                                    d="M11.226 7.10845C10.9819 6.86437 10.9819 6.46864 11.226 6.22456C11.4701 5.98048 11.8658 5.98048 12.1099 6.22456L15.4432 9.5579C15.6873 9.80197 15.6873 10.1977 15.4432 10.4418L12.1099 13.7751C11.8658 14.0192 11.4701 14.0192 11.226 13.7751C10.9819 13.531 10.9819 13.1353 11.226 12.8912L13.4924 10.6248H5.41797C5.07279 10.6248 4.79297 10.345 4.79297 9.99984C4.79297 9.65466 5.07279 9.37484 5.41797 9.37484H13.4924L11.226 7.10845Z"
+                                    fill="black"></path>
+                            </svg> </a>
+                    </div>
+
+                </div>
+            </div>
+            <div class="flex  flex-col xl:max-w-4xl w-full flex-grow ">
+                <div
+                    class="flex flex-col gap-2.5 justify-center md:flex-row md:flex-wrap md:justify-between md:gap-8 w-full ">
+                    <div
+                        class=" my-5 max-w-72 flex flex-col justify-between h-60 border-t-2 border-t-gray-300 md:max-w-80 lg:w-96 xl:mx-0  w-full">
+                        <div class="flex flex-col gap-3">
+                            <h2 class="font-semibold pt-5">Effective communication in the company</h2>
+                            <p>On the other hand, modern development methodology directly depends on the withdrawal of
+                                current assets.</p>
+                        </div> <a href="" class="flex justify-start items-center gap-2.5 text-green-600">21.08.2021 <svg
+                                xmlns="http://www.w3.org/2000/svg" width="24" height="30" viewBox="0 0 20 20"
+                                fill="none">
+                                <path class="group-hover:fill-green-700"
+                                    d="M11.226 7.10845C10.9819 6.86437 10.9819 6.46864 11.226 6.22456C11.4701 5.98048 11.8658 5.98048 12.1099 6.22456L15.4432 9.5579C15.6873 9.80197 15.6873 10.1977 15.4432 10.4418L12.1099 13.7751C11.8658 14.0192 11.4701 14.0192 11.226 13.7751C10.9819 13.531 10.9819 13.1353 11.226 12.8912L13.4924 10.6248H5.41797C5.07279 10.6248 4.79297 10.345 4.79297 9.99984C4.79297 9.65466 5.07279 9.37484 5.41797 9.37484H13.4924L11.226 7.10845Z"
+                                    fill="black"></path>
+                            </svg> </a>
+                    </div>
+                    <div
+                        class=" my-5 max-w-72  flex flex-col justify-between h-60 border-t-2 border-t-gray-300 md:max-w-80 lg:w-96 xl:mx-0  w-full">
+                        <div class="flex flex-col gap-3">
+                            <h2 class="font-semibold pt-5">Flash drives will not go out of style</h2>
+                            <p>Just like the new model of organizational activity ensures the relevance of priority
+                                requirements.</p>
+                        </div> <a href="" class="flex justify-start items-center gap-2.5 text-green-600">01.08.2021 <svg
+                                xmlns="http://www.w3.org/2000/svg" width="24" height="30" viewBox="0 0 20 20"
+                                fill="none">
+                                <path class="group-hover:fill-green-700"
+                                    d="M11.226 7.10845C10.9819 6.86437 10.9819 6.46864 11.226 6.22456C11.4701 5.98048 11.8658 5.98048 12.1099 6.22456L15.4432 9.5579C15.6873 9.80197 15.6873 10.1977 15.4432 10.4418L12.1099 13.7751C11.8658 14.0192 11.4701 14.0192 11.226 13.7751C10.9819 13.531 10.9819 13.1353 11.226 12.8912L13.4924 10.6248H5.41797C5.07279 10.6248 4.79297 10.345 4.79297 9.99984C4.79297 9.65466 5.07279 9.37484 5.41797 9.37484H13.4924L11.226 7.10845Z"
+                                    fill="black"></path>
+                            </svg> </a>
+                    </div>
+                </div>
+                <div
+                    class="flex flex-col gap-2.5 justify-center md:flex-row  md:flex-wrap md:justify-between md:gap-8  w-full ">
+                    <div
+                        class=" my-5 max-w-72 flex flex-col justify-between h-60 border-t-2 border-t-gray-300 md:max-w-80 lg:w-96 xl:mx-0  w-full">
+                        <div class="flex flex-col gap-3">
+                            <h2 class="font-semibold pt-5">Searching for new branding solutions</h2>
+                            <p>Diverse and rich experience tells us that, diluted with a fair amount of empathy,
+                                rational
+                                thinking creates the prerequisites for the timely completion of the most important task.
+                            </p>
+                        </div> <a href="" class="flex justify-start items-center gap-2.5 text-green-600">04.07.2021 <svg
+                                xmlns="http://www.w3.org/2000/svg" width="24" height="30" viewBox="0 0 20 20"
+                                fill="none">
+                                <path class="group-hover:fill-green-700"
+                                    d="M11.226 7.10845C10.9819 6.86437 10.9819 6.46864 11.226 6.22456C11.4701 5.98048 11.8658 5.98048 12.1099 6.22456L15.4432 9.5579C15.6873 9.80197 15.6873 10.1977 15.4432 10.4418L12.1099 13.7751C11.8658 14.0192 11.4701 14.0192 11.226 13.7751C10.9819 13.531 10.9819 13.1353 11.226 12.8912L13.4924 10.6248H5.41797C5.07279 10.6248 4.79297 10.345 4.79297 9.99984C4.79297 9.65466 5.07279 9.37484 5.41797 9.37484H13.4924L11.226 7.10845Z"
+                                    fill="black"></path>
+                            </svg> </a>
+                    </div>
+                    <div
+                        class=" my-5 max-w-72  flex flex-col justify-between h-60 border-t-2 border-t-gray-300 md:max-w-80 lg:w-96 xl:mx-0  w-full">
+                        <div class="flex flex-col gap-3">
+                            <h2 class="font-semibold pt-5">Beginning of cooperation with RosGosStrakh</h2>
+                            <p>Thorough research of competitors is made a mockery, although their very existence brings
+                                undoubted benefit to society.</p>
+                        </div> <a href="" class="flex justify-start items-center gap-2.5 text-green-600">02.07.2021 <svg
+                                xmlns="http://www.w3.org/2000/svg" width="24" height="30" viewBox="0 0 20 20"
+                                fill="none">
+                                <path class="group-hover:fill-green-700"
+                                    d="M11.226 7.10845C10.9819 6.86437 10.9819 6.46864 11.226 6.22456C11.4701 5.98048 11.8658 5.98048 12.1099 6.22456L15.4432 9.5579C15.6873 9.80197 15.6873 10.1977 15.4432 10.4418L12.1099 13.7751C11.8658 14.0192 11.4701 14.0192 11.226 13.7751C10.9819 13.531 10.9819 13.1353 11.226 12.8912L13.4924 10.6248H5.41797C5.07279 10.6248 4.79297 10.345 4.79297 9.99984C4.79297 9.65466 5.07279 9.37484 5.41797 9.37484H13.4924L11.226 7.10845Z"
+                                    fill="black"></path>
+                            </svg> </a>
+                    </div>
+                </div>
+            </div>
+            <div id="pagination" class="pagination"></div>
+        </div>
+
+    </section>
+
+    <!-- FAQS -->
+    <section id="faqs"
+        class="max-w-72 m-auto flex flex-col justify-between pb-10 md:max-w-2xl lg:max-w-4xl w-full xl:max-w-5xl">
+        <h1 class="main-title text-start font-bold text-2xl py-10 md:py-14"> Frequently Asked <span
+                id="underline">Questions</span>
+        </h1>
+        <div class="faqs-col flex flex-col justify-center pb-7 md:flex-row md:justify-between lg:gap-28">
+            <ul class="faqs-col lg:w-full ">
+                <li class="border-t-2 border-t-green-800 md:w-72 flex-grow lg:max-w-96  xl:max-w-3xl lg:w-full">
+                    <label for="first" class="query flex justify-between  py-5">Do you deliver throughout Russia? <img
+                            class=" caret-down w-6 h-6" src="images/caret-down.png" alt=""></label>
+
+                    <div class="answers hidden justify-between pb-2.5">
+                        <p>Quisque in lacus a urna fermentum euismod. Integer mi nibh, dapibus ac scelerisque
+                            eu, facilisis quis purus. Morbi blandit sit amet turpis nec</p>
+                        <img class=" caret-down w-6 h-6  rotate-180" src="images/caret-down.png" alt="">
+                    </div>
+                </li>
+                <li class="border-t-2 border-t-green-800 md:w-72 flex-grow lg:max-w-96  xl:max-w-3xl lg:w-full">
+                    <label for="second" class="query flex justify-between py-5">Do you print on paper? <img
+                            src="images/caret-down.png" class=" caret-down w-6 h-6" alt=""></label>
+
+                    <div class="answers hidden  justify-between pb-2.5">
+                        <p>Quisque in lacus a urna fermentum euismod. Integer mi nibh, dapibus ac scelerisque
+                            eu, facilisis quis purus. Morbi blandit sit amet turpis nec</p>
+                        <img class=" caret-down w-6 h-6  rotate-180" src="images/caret-down.png" alt="">
+                    </div>
+                </li>
+                <li class="border-t-2 border-t-green-800 md:w-72 flex-grow lg:max-w-96  xl:max-w-3xl lg:w-full">
+                    <label for="third" class="query flex justify-between py-5">Can I make a print on my item? <img
+                            src="images/caret-down.png" class="caret-down w-6 h-6" alt=""></label>
+
+                    <div class="answers hidden justify-between pb-2.5">
+                        <p>Quisque in lacus a urna fermentum euismod. Integer mi nibh, dapibus ac scelerisque
+                            eu, facilisis quis purus. Morbi blandit sit amet turpis nec</p>
+                        <img class=" caret-down w-6 h-6  rotate-180" src="images/caret-down.png" alt="">
+                    </div>
+                </li>
+                <li class="border-t-2 border-t-green-800 md:w-72 flex-grow lg:max-w-96  xl:max-w-3xl lg:w-full">
+                    <label for="fourth" class="query flex justify-between py-5">How quickly can you place an order? <img
+                            src="images/caret-down.png" class=" caret-down w-6 h-6" alt=""></label>
+
+                    <div class="answers hidden justify-between pb-2.5">
+                        <p>Quisque in lacus a urna fermentum euismod. Integer mi nibh, dapibus ac scelerisque
+                            eu, facilisis quis purus. Morbi blandit sit amet turpis nec</p>
+                        <img class=" caret-down w-6 h-6  rotate-180" src="images/caret-down.png" alt="">
+                    </div>
+                </li>
+            </ul>
+            <ul class="faqs-col  lg:w-full ">
+                <li class="border-t-2 border-t-green-800 md:w-72 flex-grow lg:max-w-96 xl:max-w-3xl lg:w-full">
+                    <label for="fifth" class="query flex justify-between py-5">Can I order one item? <img
+                            src="images/caret-down.png" class="caret-down w-6 h-6" alt=""></label>
+
+                    <div class="answers hidden justify-between pb-2.5">
+                        <p>Quisque in lacus a urna fermentum euismod. Integer mi nibh, dapibus ac scelerisque
+                            eu, facilisis quis purus. Morbi blandit sit amet turpis nec</p>
+                        <img class=" caret-down w-6 h-6  rotate-180" src="images/caret-down.png" alt="">
+                    </div>
+                </li>
+                <li class="border-t-2 border-t-green-800 md:w-72 flex-grow lg:max-w-96  xl:max-w-3xl lg:w-full">
+                    <label for="sixth" class="query flex justify-between py-5">Can I order from abroad? <img
+                            src="images/caret-down.png" class="caret-down w-6 h-6" alt=""></label>
+
+                    <div class="answers hidden justify-between pb-2.5">
+                        <p>Quisque in lacus a urna fermentum euismod. Integer mi nibh, dapibus ac scelerisque
+                            eu, facilisis quis purus. Morbi blandit sit amet turpis nec</p>
+                        <img class=" caret-down w-6 h-6  rotate-180" src="images/caret-down.png" alt="">
+                    </div>
+                </li>
+                <li class="border-t-2 border-t-green-800 md:w-72 flex-grow lg:max-w-96  xl:max-w-3xl lg:w-full">
+                    <label for="seventh" class=" query flex justify-between py-5">Can I arrange pickup? <img
+                            src="images/caret-down.png" class="caret-down w-6 h-6" alt=""></label>
+
+                    <div class="answers hidden justify-between pb-2.5">
+                        <p>Quisque in lacus a urna fermentum euismod. Integer mi nibh, dapibus ac scelerisque
+                            eu, facilisis quis purus. Morbi blandit sit amet turpis nec</p>
+                        <img class=" caret-down w-6 h-6  rotate-180" src="images/caret-down.png" alt="">
+                    </div>
+                </li>
+                <li class="border-t-2 border-t-green-800 md:w-72 flex-grow lg:max-w-96 xl:max-w-3xl lg:w-full">
+                    <label for="eightth" class=" query flex justify-between py-5">If I am not a legal entity, will we
+                        cooperate? <img src="images/caret-down.png" class="caret-down w-6 h-6" alt=""></label>
+
+                    <div class="answers hidden justify-between pb-2.5">
+                        <p>Quisque in lacus a urna fermentum euismod. Integer mi nibh, dapibus ac scelerisque
+                            eu, facilisis quis purus. Morbi blandit sit amet turpis nec</p>
+                        <img class=" caret-down w-6 h-6  rotate-180" src="images/caret-down.png" alt="">
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <button
+            class="group hover:bg-green-500 hover:text-white self-end inline-flex justify-center items-center gap-2.5 border rounded-lg p-2.5 ">More
+            questions <i class="fa-solid fa-question"></i> </button>
+    </section>
+
+
+    <section id="call-center"
+        class="relative w-screen special-green my-24 lg:m-auto lg:rounded-xl lg:max-w-4xl lg:py-2.5  xl:max-w-5xl">
+        <div
+            class="call-row px-2.5 py-5   flex flex-wrap justify-start sm:justify-between md:justify-between md:px-5 lg:justify-evenly xl:justify-start xl:gap-16 xl:pl-20">
+            <div
+                class="flex flex-col justify-between sm:justify-center sm:pl-5 w-72 md:justify-center md:w-96 md:pl-6 lg:pl-0">
+                <h1 class="font-semibold text-white text-xl pt-2 pb-6 md:text-4xl">Do you need <span
+                        class="underline decoration-slate-600 decoration-2">help?</span></h1>
+                <p class="text-xs text-green-900 pb-5 md:text-lg">Leave your details and we will call you back and
+                    resolve the
+                    issue. Remember, by leaving contacts you consent to the processing of personal data.</p>
+            </div>
+            <form action="call-center" method="post" id="contactForm" class=" z-10 xl:pl-3">
+                <div id="name-fill" class="flex flex-col">
+                    <label for="fullName" class="text-base text-green-900 pb-2.5">Name</label>
+                    <input type="text" value="" name="full name" id="fullName" placeholder="James"
+                        class="p-2.5 rounded-lg w-72 z-10" required="">
+                </div>
+                <div id="query-for" class="flex flex-col pt-2.5 pb-5">
+                    <label for="telNumber" class="text-base text-green-900 pb-2.5">Mobile
+                        number</label>
+                    <div id="call-forward" class="inline-flex justify-between w-72">
+                        <input type="tel" value="" name="contact detail" id="telNumber" class="p-2.5 rounded-lg z-10 "
+                            placeholder="+7 000 000 00 00" required="number">
+                        <button onclick="submitBtn()" id="submit-button" class="p-2.5 bg-white rounded-lg z-10"><svg
+                                xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"
+                                fill="none">
+                                <path
+                                    d="M11.226 7.10845C10.9819 6.86437 10.9819 6.46864 11.226 6.22456C11.4701 5.98048 11.8658 5.98048 12.1099 6.22456L15.4432 9.5579C15.6873 9.80197 15.6873 10.1977 15.4432 10.4418L12.1099 13.7751C11.8658 14.0192 11.4701 14.0192 11.226 13.7751C10.9819 13.531 10.9819 13.1353 11.226 12.8912L13.4924 10.6248H5.41797C5.07279 10.6248 4.79297 10.345 4.79297 9.99984C4.79297 9.65466 5.07279 9.37484 5.41797 9.37484H13.4924L11.226 7.10845Z"
+                                    fill="black"></path>
+                            </svg></button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+        <img class="hidden lg:block absolute lg:right-0  top-7 " src="images/pattern (1).png" alt="">
+        <img class="absolute right-0 top-36 sm:top-5 lg:hidden" src="images/pattern (2).png" alt="">
+    </section>
+    <div
+        class="modal-content-two hidden modal-p-center w-1/2 h-1/4 overflow-auto bg-slate-600 justify-center items-center ">
+        <span onclick="closeBtn()" class="close absolute top-2 right-2 text-3xl font-extrabold text-red-700">×</span>
+        <h1 class="text-lg text-white text-center p-5 ">Thank you for contacting us about your concern! We will contact
+            you soon !
+        </h1>
+
+    </div>
+    <footer class="flex flex-col w-screen bg-gray-200 border-t border-gray-500 mt-10 pb-16 md:pb-5">
+        <div class="hidden xl:flex justify-between w-full max-w-7xl m-auto p-10">
+            <div>
+                <img class="mr-20" src="images/logotype.png" alt="">
+            </div>
+            <div class="flex flex-col  w-full max-w-6xl">
+                <div class="flex justify-between gap-10 w-full max-w-5xl">
+                    <div class="self-end flex justify-between flex-grow-5">
+                        <div class="flex flex-col justify-start gap-3 w-full max-w-44 ">
+                            <a href="" class="text-sm">About Company</a>
+                            <a href="" class="text-sm">Portfolio</a>
+                            <a href="" class="text-sm">Vacancies</a>
+                            <a href="" class="text-sm">Dealers</a>
+                            <a href="" class="text-sm">Guarantee</a>
+                        </div>
+                        <div class="flex flex-col justify-start gap-3 w-full max-w-44">
+                            <a href="" class="text-sm">Contacts</a>
+                            <a href="" class="text-sm">Stock</a>
+                            <a href="" class="text-sm">Production</a>
+                            <a href="" class="text-sm">Shipping &amp; Payment</a>
+                            <a href="" class="text-sm">Exchange &amp; Return</a>
+                        </div>
+                        <div class="flex flex-col justify-start gap-3 pl-1.5 w-full max-w-44">
+                            <a href="" class="text-sm text-gray-400">Services</a>
+                            <a href="" class="text-sm">Silkscreen printing</a>
+                            <a href="" class="text-sm">Pad printing</a>
+                            <a href="" class="text-sm">Engraving</a>
+                            <a href="" class="text-sm">Printing on bags</a>
+                        </div>
+                    </div>
+                    <div class="self-end flex justify-between flex-grow-4 pt-5 border-t border-gray-300">
+                        <div class="flex flex-col justify-start gap-3  w-full max-w-44">
+                            <a href="" class="text-sm">Engraving</a>
+                            <a href="" class="text-sm">Embossing</a>
+                            <a href="" class="text-sm">Cliche</a>
+                            <a href="" class="text-sm">Full color printing</a>
+                        </div>
+                        <div class="flex flex-col justify-start gap-3 w-full max-w-44">
+                            <a href="" class="text-sm">Polymer filling</a>
+                            <a href="" class="text-sm">Design services</a>
+                            <a href="" class="text-sm">USB recording</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex justify-end w-full mt-14 max-w-5xl">
+                    <div class="flex flex-col flex-grow-1">
+                        <div class="flex flex-col justify-start gap-3 w-full max-w-44">
+                            <a href="" class="text-sm text-gray-400">Catalog</a>
+                            <a href="" class="text-sm">Accessories</a>
+                            <a href="" class="text-sm">Textile</a>
+                        </div>
+                    </div>
+                    <div class="self-end flex justify-between flex-grow-4 pt-5 border-t border-gray-300">
+                        <div class="flex flex-col justify-start gap-3 w-full max-w-44">
+                            <a href="" class="text-sm">Flash cards</a>
+                            <a href="" class="text-sm">Xiaomi</a>
+                        </div>
+                        <div class="flex flex-col justify-start gap-3 w-full max-w-44">
+                            <a href="" class="text-sm">Smart mugs</a>
+                            <a href="" class="text-sm">External drives</a>
+                        </div>
+                        <div class="flex flex-col justify-start gap-3 w-full max-w-44">
+                            <a href="" class="text-sm">Office</a>
+                            <a href="" class="text-sm">Package</a>
+                        </div>
+                        <div class="flex flex-col justify-start gap-3 w-full max-w-44">
+                            <a href="" class="text-sm text-red-600">Presents</a>
+                            <a href="" class="text-sm">Other events</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="hidden md:flex flex-col px-8 py-8 lg:m-auto lg:max-w-5xl lg:w-full xl:hidden">
+            <div class="flex  gap-10 pb-10 ">
+
+                <div class="logo-rek">
+                    <img src="images/logotype.png" alt="">
+                </div>
+
+                <div class=" flex justify-between max-w-3xl w-full ">
+                    <div class="flex flex-col justify-start gap-3">
+                        <a href="" class="text-sm">About Company</a>
+                        <a href="" class="text-sm">Portfolio</a>
+                        <a href="" class="text-sm">Vacancies</a>
+                        <a href="" class="text-sm">Dealers</a>
+                    </div>
+                    <div class="flex flex-col justify-start gap-3">
+                        <a href="" class="text-sm">Contacts</a>
+                        <a href="" class="text-sm">Stock</a>
+                        <a href="" class="text-sm">Production</a>
+                    </div>
+                    <div class="flex flex-col justify-start gap-3">
+                        <a href="" class="text-sm">Shipping &amp; Payment</a>
+                        <a href="" class="text-sm">Exchange &amp; Return</a>
+                        <a href="" class="text-sm">Guarantee</a>
+                    </div>
+                </div>
+            </div>
+            <div class="flex justify-start gap-10 pb-10 ">
+                <div class="flex">
+                    <div class="flex flex-col justify-start gap-3 lg:pr-4">
+                        <a href="" class="text-sm text-gray-400">Services</a>
+                        <a href="" class="text-sm">Silkscreen printing</a>
+                        <a href="" class="text-sm">Pad printing</a>
+                        <a href="" class="text-sm">Engraving</a>
+                    </div>
+                </div>
+                <div class="flex justify-between max-w-3xl w-full border-t border-gray-400 mt-2 pt-6">
+                    <div class="flex flex-col justify-start gap-3 ml-2.5 lg:ml-0">
+                        <a href="" class="text-sm">Printing on bags</a>
+                        <a href="" class="text-sm">Engraving</a>
+                        <a href="" class="text-sm">Embossing</a>
+                    </div>
+                    <div class="flex flex-col justify-start gap-3 ml-10 lg:ml-8">
+                        <a href="" class="text-sm">Cliche</a>
+                        <a href="" class="text-sm">Full color printing</a>
+                        <a href="" class="text-sm">USB recording</a>
+                    </div>
+                    <div class="flex flex-col justify-start gap-3 mr-9 ">
+                        <a href="" class="text-sm">Polymer filling</a>
+                        <a href="" class="text-sm">Design services</a>
+                    </div>
+                </div>
+            </div>
+            <div class="flex justify-start gap-10 pb-10 ">
+                <div class="flex">
+                    <div class="flex flex-col justify-start gap-3 lg:pr-16">
+                        <a href="" class="text-sm text-gray-400">Catalog</a>
+                        <a href="" class="text-sm">Accessories</a>
+                        <a href="" class="text-sm">Flash cards</a>
+                        <a href="" class="text-sm">Textile</a>
+                    </div>
+                </div>
+                <div class="flex justify-between max-w-3xl w-full border-t border-gray-400 mt-2 pt-6">
+                    <div class="flex flex-col justify-start gap-3 ml-8 lg:ml-0">
+                        <a href="" class="text-sm">Smart mugs</a>
+                        <a href="" class="text-sm">Xiaomi</a>
+                        <a href="" class="text-sm">Package</a>
+                    </div>
+                    <div class="flex flex-col justify-start gap-3 ml-14 lg:ml-12">
+                        <a href="" class="text-sm">Office</a>
+                        <a href="" class="text-sm">External drives</a>
+                    </div>
+                    <div class="flex flex-col justify-start  gap-3 ">
+                        <a href="" class="text-sm text-red-600 mr-20 pr-1">Presents</a>
+                        <a href="" class="text-sm">Other events</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="flex flex-col justify-center py-8 px-5 md:hidden">
+            <div class="self-center">
+                <img src="images/logotype.png" alt="">
+            </div>
+            <div class="flex justify-between my-3 flex-grow ">
+                <div class="flex flex-col justify-start gap-3">
+                    <a href="" class="text-xs">About Company</a>
+                    <a href="" class="text-xs">Portfolio</a>
+                    <a href="" class="text-xs">Vacancies</a>
+                    <a href="" class="text-xs">Dealers</a>
+                    <a href="" class="text-xs">Guarantee</a>
+                </div>
+                <div class="flex flex-col justify-start gap-3">
+                    <a href="" class="text-xs">Contacts</a>
+                    <a href="" class="text-xs">Stock</a>
+                    <a href="" class="text-xs">Production</a>
+                    <a href="" class="text-xs">Shipping &amp; Payment</a>
+                    <a href="" class="text-xs">Exchange &amp; Return</a>
+                </div>
+
+            </div>
+
+            <div class="flex justify-between my-3 ">
+                <div class="flex flex-col justify-start gap-3">
+                    <a href="" class="text-xs text-gray-400">Services</a>
+                    <a href="" class="text-xs">Silkscreen printing</a>
+                    <a href="" class="text-xs">Pad printing</a>
+                    <a href="" class="text-xs">Engraving</a>
+                    <a href="" class="text-xs">Cliche</a>
+                    <a href="" class="text-xs">Full color printing</a>
+                    <a href="" class="text-xs">USB recording</a>
+                </div>
+                <div class="flex flex-col justify-start gap-3 pr-5" id="second-col">
+                    <a href="" class="text-xs border-t pt-4 border-gray-400 mt-2">Printing on bags</a>
+                    <a href="" class="text-xs">Engraving</a>
+                    <a href="" class="text-xs">Embossing</a>
+                    <a href="" class="text-xs">Polymer filling</a>
+                    <a href="" class="text-xs">Design services</a>
+                </div>
+            </div>
+            <div class="flex justify-between my-3">
+                <div class="flex flex-col justify-start gap-3">
+                    <a href="" class="text-xs text-gray-400">Catalog</a>
+                    <a href="" class="text-xs">Accessories</a>
+                    <a href="" class="text-xs">Textile</a>
+                    <a href="" class="text-xs">Flash cards</a>
+                    <a href="" class="text-xs">Office</a>
+                    <a href="" class="text-xs">External drives</a>
+                </div>
+                <div class="flex flex-col justify-start gap-3 pr-10" id="second-col">
+                    <a href="" class="text-xs border-t pt-4 mt-2 border-gray-400">Smart mugs</a>
+                    <a href="" class="text-xs">Xiaomi</a>
+                    <a href="" class="text-xs">Package</a>
+                    <a href="" class="text-xs">Other events</a>
+                    <a href="" class="text-xs">Presents</a>
+                </div>
+
+            </div>
+        </div>
+
+
+
+        <div class="border-t border-gray-500 lg:pt-8">
+            <div
+                class="flex flex-col justify-between items-center  md:flex-row md:px-10 lg:m-auto lg:px-8 xl:max-w-7xl">
+                <div class=" md:self-start flex justify-center gap-8 py-8 lg:py-0">
+                    <button href="" class=""><img class=" w-10 h-10 rounded-lg shadow-xl"
+                            src="images/instagram-icon.png" alt=""></button>
+                    <button href="" class=""><img class="w-10 h-10 rounded-lg shadow-xl" src="images/fb-icon.png"
+                            alt=""></button>
+                    <button href="" class=""><img class="w-10 h-10 rounded-lg shadow-xl" src="images/yt-icon.png"
+                            alt=""></button>
+                </div>
+                <div class="hidden lg:flex justify-between gap-8 xl:gap-28 xl:mr-2">
+                    <div class="flex flex-col justify-between gap-4">
+                        <a href="" class="text-gray-400  text-sm">Moscow</a>
+                        <p class="text-sm">+7 (945) 133-16-28</p>
+                    </div>
+                    <div class="flex flex-col justify-between gap-4">
+                        <a href="" class="text-gray-400  text-sm">Ulan-Ude</a>
+                        <p class="text-sm">+7 (925) 272-83-08</p>
+                    </div>
+                    <div class="flex flex-col justify-between gap-4">
+                        <a href="" class="inline-flex items-center justify-start gap-2.5 text-green-700 text-sm"><i
+                                class="fa-regular fa-user"></i>Personal cabinet</a>
+                        <p class="text-sm">info@reklem.ru</p>
+                    </div>
+                    <div class="flex flex-col justify-between gap-4">
+                        <a href="" class="inline-flex items-center justify-start gap-2.5 text-green-700 text-sm"><i
+                                class="fa-regular fa-file"></i>Data processing</a>
+                        <p class="text-gray-400  text-sm">© Copyright 2021</p>
+                    </div>
+                </div>
+                <div
+                    class="flex justify-between w-11/12 px-2.5 gap-5 md:w-3/5 md:pt-8 md:justify-end md:gap-20 lg:hidden">
+                    <div class="flex flex-col justify-start gap-10">
+                        <div class="flex flex-col justify-start gap-3">
+                            <a href="" class="text-gray-400 text-xs md:text-sm">Moscow</a>
+                            <p class="text-xs md:text-sm">+7 (945) 133-16-28</p>
+                        </div>
+                        <div class="flex flex-col justify-start gap-3">
+                            <a href=""
+                                class="inline-flex items-center justify-start gap-2.5 text-xs text-green-700 md:text-sm"><i
+                                    class="fa-regular fa-user"></i>Personal cabinet</a>
+                            <p class="text-xs md:text-sm">info@reklem.ru</p>
+                        </div>
+                    </div>
+                    <div class="flex flex-col justify-start gap-10">
+                        <div class="flex flex-col justify-start gap-3">
+                            <a href="" class="text-gray-400 text-xs md:text-sm">Ulan-Ude</a>
+                            <p class="text-xs md:text-sm">+7 (925) 272-83-08</p>
+                        </div>
+
+                        <div class="flex flex-col justify-start gap-3">
+                            <a href=""
+                                class="inline-flex items-center justify-start gap-2.5 text-xs text-green-700 md:text-sm"><i
+                                    class="fa-regular fa-file"></i>Data processing</a>
+                            <p class="text-gray-400 text-xs md:text-sm">© Copyright 2021</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </footer>
+
+
+    <script src="main.js"></script>
+</body>
+
+</html>

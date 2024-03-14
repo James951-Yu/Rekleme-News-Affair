@@ -1,0 +1,42 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Tailwind CSS */
+.content-after::after {
+    content: '/';
+}
+
+.special-green {
+    background-color: rgba(16, 187, 135, 1);
+}
+
+.modal-p-center {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    z-index: 20;
+    transform: translate(-50%, -50%);
+
+
+}
+
+.flex-grow-3 {
+    flex-grow: 3;
+}
+
+.flex-grow-2 {
+    flex-grow: 2;
+}
+
+.flex-grow-1 {
+    flex-grow: 1;
+}
+
+.flex-grow-4 {
+    flex-grow: 4;
+}
+
+.flex-grow-5 {
+    flex-grow: 5;
+}
