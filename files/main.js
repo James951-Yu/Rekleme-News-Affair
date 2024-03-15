@@ -81,6 +81,40 @@ function hideAllAnswers() {
 }
 
 
+// pagenation
+let link = document.getElementsByClassName("link")
+let currentValue = 1;
+
+function activeLink(event) {
+    for (l of link) {
+        l.classList.remove("active");
+    }
+
+    event.target.classList.add("active");
+
+    currentValue = event.target.value
+}
+
+function backBtn(event) {
+    if (currentValue > 1) {
+        for (l of link) {
+            l.classList.remove("active")
+        }
+        currentValue--;
+        link[currentValue - 1].classList.add("active");
+    }
+}
+
+function nextBtn(event) {
+    if (currentValue < 6) {
+        for (l of link) {
+            l.classList.remove("active")
+        } currentValue++;
+        link[currentValue - 1].classList.add("active");
+
+    }
+}
+
 // call enter  - contact call form
 let contactForm = document.getElementById("contactForm").addEventListener('submit', function (e) {
     e.preventDefault();
