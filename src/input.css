@@ -47,4 +47,10 @@
 .active {
     background-color: green;
     color: white;
+    background-position: 0 0;
+}
+
+.background {
+    background-position: 0 -45px;
+
 }
